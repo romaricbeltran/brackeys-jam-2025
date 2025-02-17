@@ -18,7 +18,6 @@ public class TestController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            Debug.Log("left");
             direction += Vector2.left;
         }
         if (Input.GetKey(KeyCode.RightArrow))
@@ -35,7 +34,7 @@ public class TestController : MonoBehaviour
         }
 
         direction = direction.normalized;
-        Debug.Log($"direction: {direction}");
+        // Debug.Log($"direction: {direction}");
     }
 
     void FixedUpdate()
