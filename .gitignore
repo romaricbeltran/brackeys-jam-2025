@@ -26,6 +26,10 @@
 # Visual Studio cache directory
 .vs/
 
+# Visual Studio Code specific files
+.vscode/
+*.code-workspace
+
 # Gradle cache directory
 .gradle/
 
