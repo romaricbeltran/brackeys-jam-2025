@@ -13,12 +13,12 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Wall
+  - Player
+  - Carrier
+  - Projectile
+  - Target
+  - Enemy
   - 
   - 
   - 
