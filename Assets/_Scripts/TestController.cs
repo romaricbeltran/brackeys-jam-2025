@@ -36,7 +36,7 @@ public class TestController : MonoBehaviour
         }
 
         direction = direction.normalized;
-        Debug.Log($"direction: {direction}");
+        // Debug.Log($"direction: {direction}");
     }
 
     void FixedUpdate()
