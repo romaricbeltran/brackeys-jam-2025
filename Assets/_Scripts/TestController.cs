@@ -6,35 +6,37 @@ public class TestController : MonoBehaviour
     [SerializeField] private float speed = 5.0f;
     private Vector2 direction = Vector2.zero;
     private Rigidbody2D rb;
+    private InputBinder inputBinder;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        inputBinder = GetComponent<InputBinder>();
     }
 
     void Update()
     {
         direction = Vector2.zero;
 
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if(inputBinder.GetMoveLeftInput())
         {
             direction += Vector2.left;
         }
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            direction += Vector2.right;
-        }
-        if (Input.GetKey(KeyCode.UpArrow))
+        if(inputBinder.GetMoveUpInput())
         {
             direction += Vector2.up;
         }
-        if (Input.GetKey(KeyCode.DownArrow))
+        if(inputBinder.GetMoveRightInput())
+        {
+            direction += Vector2.right;
+        }
+        if(inputBinder.GetMoveDownInput())
         {
             direction += Vector2.down;
         }
 
         direction = direction.normalized;
-        // Debug.Log($"direction: {direction}");
+        Debug.Log($"direction: {direction}");
     }
 
     void FixedUpdate()
