@@ -2,7 +2,13 @@ using UnityEngine;
 
 public class TransformDirection : MonoBehaviour
 {
-    public Transform Target;
+    private Transform _target;
+
+    public Transform Target
+    {
+        get { return _target;}
+        set { _target = value;}
+    }
 
     private void Start()
     {
