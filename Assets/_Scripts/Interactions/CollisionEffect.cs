@@ -15,16 +15,16 @@ public class CollisionEffect : MonoBehaviour
 
     private void OnEnable()
     {
-        m_collisionHandler.OnCollisionHappened -= OnCollisionHappened;
-        m_collisionHandler.OnCollisionHappened += OnCollisionHappened;
+        m_collisionHandler.OnCollisionHappened -= ExecuteCollisionEffect;
+        m_collisionHandler.OnCollisionHappened += ExecuteCollisionEffect;
     }
 
     private void OnDisable()
     {
-        m_collisionHandler.OnCollisionHappened -= OnCollisionHappened;
+        m_collisionHandler.OnCollisionHappened -= ExecuteCollisionEffect;
     }
 
-    protected void OnCollisionHappened(Collision2D collision)
+    protected void ExecuteCollisionEffect(Collision2D collision)
     {
         Debug.Log($"OnCollisionHappened {gameObject.name}", this);
         m_health.ChangeHealth(-10);

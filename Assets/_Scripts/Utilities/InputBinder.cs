@@ -31,7 +31,17 @@ public class InputBinder : MonoBehaviour
     }
     public bool GetInteractInput()
     {
-        return GetInputTypeInternal(InGameActionType.Interact);
+        List<KeyCode> targetKeys = new List<KeyCode>();
+        TryGetTargetKeys(InGameActionType.Interact, out targetKeys);
+
+        foreach (var key in targetKeys)
+        {
+            if (Input.GetKeyDown(key))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     #endregion
@@ -81,6 +91,7 @@ public enum InGameActionType
     MoveRight = 1 << 4,
     MoveDown = 1 << 5,
     Interact = 1 << 6,
+    Jump = 1<<7
 }
 
 [Serializable]

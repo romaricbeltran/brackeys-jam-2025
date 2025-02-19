@@ -3,10 +3,11 @@ using UnityEngine;
 public class Shooter : MonoBehaviour
 {
     [SerializeField] private Projectile _projectilePrefab;
+    [SerializeField] private float _shootingInterval = 4f;
 
     void Start()
     {
-        InvokeRepeating("SpawnProjectile", 1f, 1f);
+        InvokeRepeating("SpawnProjectile", _shootingInterval, _shootingInterval);
     }
     
     private void SpawnProjectile()
