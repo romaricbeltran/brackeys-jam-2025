@@ -2333,7 +2333,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 361703476}
   speed: 0.2
-  avoidanceRadius: 1
   distanceThreshold: 1
 --- !u!114 &713751185
 MonoBehaviour:
@@ -2511,6 +2510,7 @@ GameObject:
   - component: {fileID: 816612611}
   - component: {fileID: 816612610}
   - component: {fileID: 816612613}
+  - component: {fileID: 816612614}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2659,7 +2659,20 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.45
+--- !u!114 &816612614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816612608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfb63203e5e6f654d8ea5e53ab44c87a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _actionKeysData: {fileID: 11400000, guid: 4503a21e0f6bb9a49b8e60b250471aee, type: 2}
 --- !u!1 &1078552852
 GameObject:
   m_ObjectHideFlags: 0
