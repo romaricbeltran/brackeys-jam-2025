@@ -4,6 +4,9 @@ using UnityEngine;
 [RequireComponent(typeof(HealthComponent))]
 public class CollisionEffect : MonoBehaviour
 {
+    [SerializeField] private bool selfDestroyOnCollision;
+    [SerializeField] private LayerMask _instaDeathLayerMask;
+
     private HealthComponent m_health;
     private CollisionHandler m_collisionHandler;
 
@@ -27,6 +30,12 @@ public class CollisionEffect : MonoBehaviour
     protected void ExecuteCollisionEffect(Collision2D collision)
     {
         Debug.Log($"OnCollisionHappened {gameObject.name}", this);
-        m_health.ChangeHealth(-10);
+
+        if (selfDestroyOnCollision && ((1 << collision.gameObject.layer) & _instaDeathLayerMask) != 0)
+        {
+            Destroy(gameObject);
+        }
+
+        m_health.ChangeHealth(-1);
     }
 }

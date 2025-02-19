@@ -6,7 +6,6 @@ public class CollisionHandler : MonoBehaviour
     public Action<Collision2D> OnCollisionHappened;
 
     [SerializeField] private LayerMask _layerMask;
-    [SerializeField] private bool selfDestroyOnCollision;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -15,10 +14,6 @@ public class CollisionHandler : MonoBehaviour
         {
             Debug.Log($"CollisionEnter - {gameObject.name} with {collision.gameObject.name}", this);
          
-            if (selfDestroyOnCollision)
-            {
-                Destroy(gameObject);
-            }
             OnCollisionHappened?.Invoke(collision);
         }
     }
