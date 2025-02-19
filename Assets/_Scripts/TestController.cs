@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 
 public class TestController : MonoBehaviour
 {
+    public static Action<bool> OnInteractRequest;
 
     [SerializeField] private float speed = 5.0f;
+
     private Vector2 direction = Vector2.zero;
     private Rigidbody2D rb;
     private InputBinder inputBinder;
@@ -37,6 +40,9 @@ public class TestController : MonoBehaviour
 
         direction = direction.normalized;
         // Debug.Log($"direction: {direction}");
+
+        bool isInteractRequested = inputBinder.GetInteractInput();
+        OnInteractRequest?.Invoke(isInteractRequested);
     }
 
     void FixedUpdate()
