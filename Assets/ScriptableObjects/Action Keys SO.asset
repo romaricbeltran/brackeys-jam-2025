@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44e9c12075357b24ebe3dec87c14085f, type: 3}
-  m_Name: New Action Keys Data
+  m_Name: Action Keys SO
   m_EditorClassIdentifier: 
   _actionKeysBinding:
   - targetInputType: 8
