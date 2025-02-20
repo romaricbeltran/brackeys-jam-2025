@@ -7,7 +7,7 @@ public class TestController : MonoBehaviour
 
     [SerializeField] private float speed = 5.0f;
 
-    private Vector2 direction = Vector2.zero;
+    private Vector2 currentDirection = Vector2.zero;
     private Rigidbody2D rb;
     private InputBinder inputBinder;
 
@@ -19,37 +19,71 @@ public class TestController : MonoBehaviour
 
     void Update()
     {
-        direction = Vector2.zero;
+        Vector2 lastDirection = currentDirection;
+        currentDirection = Vector2.zero;
 
         if(inputBinder.GetMoveLeftInput())
         {
-            direction += Vector2.left;
+            currentDirection += Vector2.left;
         }
         if(inputBinder.GetMoveUpInput())
         {
-            direction += Vector2.up;
+            currentDirection += Vector2.up;
         }
         if(inputBinder.GetMoveRightInput())
         {
-            direction += Vector2.right;
+            currentDirection += Vector2.right;
         }
         if(inputBinder.GetMoveDownInput())
         {
-            direction += Vector2.down;
+            currentDirection += Vector2.down;
         }
 
-        direction = direction.normalized;
+        currentDirection = currentDirection.normalized;
         // Debug.Log($"direction: {direction}");
 
         bool isInteractRequested = inputBinder.GetInteractInput();
         OnInteractRequest?.Invoke(isInteractRequested);
+
+        if(currentDirection != Vector2.zero) // Move
+        {
+            Broadcaster.TriggerOnAnimationRequest(GetMovementAnimation(currentDirection));
+        }
+        else if(lastDirection != Vector2.zero) // Idle
+        {
+            Broadcaster.TriggerOnAnimationRequest(GetIdleAnimation(lastDirection));
+        }
     }
 
     void FixedUpdate()
     {
-        if (direction != Vector2.zero)
+        if (currentDirection != Vector2.zero)
         {
-            rb.AddForce(direction * speed);
+            rb.AddForce(currentDirection * speed);
+        }
+    }
+
+    private AnimationType GetMovementAnimation(Vector2 direction)
+    {
+        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+        {
+            return direction.x > 0 ? AnimationType.MoveRight : AnimationType.MoveLeft;
+        }
+        else
+        {
+            return direction.y > 0 ? AnimationType.MoveUp : AnimationType.MoveDown;
+        }
+    }
+   
+    private AnimationType GetIdleAnimation(Vector2 lastDirection)
+    {
+        if (Mathf.Abs(lastDirection.x) > Mathf.Abs(lastDirection.y))
+        {
+            return lastDirection.x > 0 ? AnimationType.IdleRight : AnimationType.IdleLeft;
+        }
+        else
+        {
+            return lastDirection.y > 0 ? AnimationType.IdleUp : AnimationType.IdleDown;
         }
     }
 }
