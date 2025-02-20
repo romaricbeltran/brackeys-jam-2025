@@ -100,7 +100,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _projectilePrefab: {fileID: 8303255831442311080, guid: cef32950cc456da41ae6e70d80977bd8, type: 3}
+  _obstacleMask:
+    serializedVersion: 2
+    m_Bits: 4160
   _shootingInterval: 4
+  _shootingRange: 10
 --- !u!58 &5539492767606374747
 CircleCollider2D:
   m_ObjectHideFlags: 0
