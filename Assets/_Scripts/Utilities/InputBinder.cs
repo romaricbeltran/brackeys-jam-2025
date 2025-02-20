@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 /// <summary>
@@ -10,6 +11,10 @@ public class InputBinder : MonoBehaviour
 {
     // [SerializeField] List<ActionKeysBinding> _actionKeysBinding;
     [SerializeField] ActionKeysSO _actionKeysData;
+    [SerializeField] private float _dashCooldown = .5f;
+
+    private bool m_isDashCooldown;
+    private Coroutine m_dashCor;
 
     #region PUBLIC METHODS
 
@@ -31,8 +36,7 @@ public class InputBinder : MonoBehaviour
     }
     public bool GetInteractInput()
     {
-        List<KeyCode> targetKeys = new List<KeyCode>();
-        TryGetTargetKeys(InGameActionType.Interact, out targetKeys);
+        TryGetTargetKeys(InGameActionType.Interact, out List<KeyCode> targetKeys);
 
         foreach (var key in targetKeys)
         {
@@ -46,13 +50,15 @@ public class InputBinder : MonoBehaviour
 
     public bool GetDashInput()
     {
-        List<KeyCode> targetKeys = new List<KeyCode>();
-        TryGetTargetKeys(InGameActionType.Dash, out targetKeys);
+        if(m_isDashCooldown) return false; // GUARD CASE
+
+        TryGetTargetKeys(InGameActionType.Dash, out List<KeyCode> targetKeys);
 
         foreach (var key in targetKeys)
         {
             if (Input.GetKeyDown(key))
             {
+                m_dashCor = StartCoroutine(DashCooldownCor(_dashCooldown));
                 return true;
             }
         }
@@ -65,8 +71,7 @@ public class InputBinder : MonoBehaviour
 
     private bool GetInputTypeInternal(InGameActionType inputType)
     {
-        List<KeyCode> targetKeys = new List<KeyCode>();
-        TryGetTargetKeys(inputType, out targetKeys);
+        TryGetTargetKeys(inputType, out List<KeyCode> targetKeys);
 
         foreach (var key in targetKeys)
         {
@@ -91,6 +96,16 @@ public class InputBinder : MonoBehaviour
             }
         }
         return false;
+    }
+
+    private IEnumerator DashCooldownCor(float duration)
+    {
+        m_isDashCooldown = true;
+
+        yield return new WaitForSeconds(duration);
+
+        m_isDashCooldown = false;
+        m_dashCor = null;
     }
 
     #endregion

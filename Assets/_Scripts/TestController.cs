@@ -7,7 +7,6 @@ public class TestController : MonoBehaviour
 
     [SerializeField] private float speed = 5.0f;
     [SerializeField] private float _dashStrength = 10f;
-    [SerializeField] private float _dashCooldown = .5f;
 
     private Vector2 m_currentDirection = Vector2.zero;
     private Rigidbody2D m_rb;
