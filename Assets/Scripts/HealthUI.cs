@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,11 @@ public class HealthUI : MonoBehaviour
     [SerializeField] private List<Image> _heartsList;
     [SerializeField] private Sprite _fullHeartSprite;
     [SerializeField] private Sprite _emptyHeartSprite;
+    [SerializeField] private HealthComponent _healthComponent;
+    private void Awake()
+    {
+        UpdateHealthUI(_healthComponent);
+    }
 
     private void OnEnable()
     {
@@ -20,18 +26,18 @@ public class HealthUI : MonoBehaviour
         HealthComponent.OnHealthChanged -= UpdateHealthUI;
     }
 
-    private void UpdateHealthUI(HealthComponent healthComponent)
+    public void UpdateHealthUI(HealthComponent healthComponent)
     {
-        /*if (healthComponent.health > maxHealth)
+        if (healthComponent.Health > healthComponent.MaxHealth)
             return;
         foreach (Image img in _heartsList)
         {
             img.sprite = _emptyHeartSprite;
         }
 
-        for (int i = 0; i < healthComponent.health; i++)
+        for (int i = 0; i < healthComponent.Health; i++)
         {
             _heartsList[i].sprite = _fullHeartSprite;
-        }*/
+        }
     }
 }

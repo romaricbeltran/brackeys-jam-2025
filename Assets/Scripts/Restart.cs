@@ -6,22 +6,36 @@ public class Restart : MonoBehaviour
 {
     public GameObject worldPrefab;
     private GameObject currentWorld;
-    //public Player player; // Assign the player in the Inspector
+    [SerializeField] private HealthComponent _healthComponent;
+    [SerializeField] private HealthUI _healthUI;
+    //public Player player; // Assign  player in the Inspector
 
     void Start()
     {
         LoadWorld();
     }
 
+    private void OnEnable()
+    {
+        Broadcaster.OnGameOver -= RestartWorld;
+        Broadcaster.OnGameOver += RestartWorld;
+    }
+
+    private void OnDisable()
+    {
+        Broadcaster.OnGameOver -= RestartWorld;
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            RestartWorld();
+            GameOverPayLoad gameOverPayLoad = new GameOverPayLoad();
+            Broadcaster.TriggerGameOver(gameOverPayLoad);
         }
     }
 
-    public void RestartWorld()
+    private void RestartWorld(GameOverPayLoad gameOverPayLoad)
     {
         //Destroy the current world then instantiate a new one
         if (currentWorld != null)
@@ -38,11 +52,21 @@ public class Restart : MonoBehaviour
             obj.ResetState();
         }
 
+        RestartCarrierHealth();
+
     }
 
     private void LoadWorld()
     {
         currentWorld = Instantiate(worldPrefab);
+    }
+
+    private void RestartCarrierHealth()
+    {
+        //This one needs to access the health inside HealthComponent so that it can change the health to default value
+        //_healthComponent._health = _healthComponent.MaxHealth;
+        _healthUI.UpdateHealthUI(_healthComponent);
+        
     }
 }
 
