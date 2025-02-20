@@ -58,6 +58,13 @@ public class Shooter : MonoBehaviour
     {
         Projectile spawnedProjectile = Instantiate(_projectilePrefab, GameObject.FindGameObjectWithTag("World").transform, true);
         spawnedProjectile.transform.position = transform.position;
-        spawnedProjectile.Init(GameObject.FindGameObjectWithTag("Carrier").transform);
+
+        var tempGOTarget = GameObject.FindGameObjectWithTag("Carrier").transform;
+        if(tempGOTarget == null)
+        {
+            tempGOTarget = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+
+        spawnedProjectile.Init(tempGOTarget);
     }
 }
