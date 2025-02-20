@@ -4,9 +4,11 @@ using UnityEngine;
 public class HealthComponent : MonoBehaviour
 {
     public static Action<HealthComponent> OnHealthChanged;
-    public bool IsDead => _health < 0;
 
     [SerializeField] private int _health = 10;
+
+    public int Health => _health;
+    public bool IsDead => _health <= 0;
 
     // value may be negative or positive
     public void ChangeHealth(int value)
