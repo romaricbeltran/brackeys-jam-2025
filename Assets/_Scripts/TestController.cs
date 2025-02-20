@@ -22,19 +22,19 @@ public class TestController : MonoBehaviour
         Vector2 lastDirection = currentDirection;
         currentDirection = Vector2.zero;
 
-        if(inputBinder.GetMoveLeftInput())
+        if (inputBinder.GetMoveLeftInput())
         {
             currentDirection += Vector2.left;
         }
-        if(inputBinder.GetMoveUpInput())
+        if (inputBinder.GetMoveUpInput())
         {
             currentDirection += Vector2.up;
         }
-        if(inputBinder.GetMoveRightInput())
+        if (inputBinder.GetMoveRightInput())
         {
             currentDirection += Vector2.right;
         }
-        if(inputBinder.GetMoveDownInput())
+        if (inputBinder.GetMoveDownInput())
         {
             currentDirection += Vector2.down;
         }
@@ -45,13 +45,13 @@ public class TestController : MonoBehaviour
         bool isInteractRequested = inputBinder.GetInteractInput();
         OnInteractRequest?.Invoke(isInteractRequested);
 
-        if(currentDirection != Vector2.zero) // Move
+        if (currentDirection != Vector2.zero) // Move
         {
-            Broadcaster.TriggerOnAnimationRequest(GetMovementAnimation(currentDirection));
+            Broadcaster.TriggerOnAnimationRequest(transform, Utils.GetMovementAnimation(currentDirection));
         }
-        else if(lastDirection != Vector2.zero) // Idle
+        else if (lastDirection != Vector2.zero) // Idle
         {
-            Broadcaster.TriggerOnAnimationRequest(GetIdleAnimation(lastDirection));
+            Broadcaster.TriggerOnAnimationRequest(transform, Utils.GetIdleAnimation(lastDirection));
         }
     }
 
@@ -62,8 +62,11 @@ public class TestController : MonoBehaviour
             rb.AddForce(currentDirection * speed);
         }
     }
+}
 
-    private AnimationType GetMovementAnimation(Vector2 direction)
+public static class Utils
+{
+    public static AnimationType GetMovementAnimation(Vector2 direction)
     {
         if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
         {
@@ -74,8 +77,8 @@ public class TestController : MonoBehaviour
             return direction.y > 0 ? AnimationType.MoveUp : AnimationType.MoveDown;
         }
     }
-   
-    private AnimationType GetIdleAnimation(Vector2 lastDirection)
+
+    public static AnimationType GetIdleAnimation(Vector2 lastDirection)
     {
         if (Mathf.Abs(lastDirection.x) > Mathf.Abs(lastDirection.y))
         {

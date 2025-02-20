@@ -1,3 +1,4 @@
+// using System.Numerics;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,12 +8,15 @@ public class TestAgent : MonoBehaviour
     [SerializeField] private float speed = 1f;
     [SerializeField] private float distanceThreshold = 1f;
 
+    private Vector2 _currentDirection;
+
     private NavMeshAgent navMeshAgent;
 
 
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        
     }
 
 
