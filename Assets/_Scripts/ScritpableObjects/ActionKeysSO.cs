@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class ActionKeysData : ScriptableObject
+public class ActionKeysSO : ScriptableObject
 {
      [SerializeField] List<ActionKeysBinding> _actionKeysBinding;
 
