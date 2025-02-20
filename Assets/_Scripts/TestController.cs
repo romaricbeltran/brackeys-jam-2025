@@ -6,60 +6,82 @@ public class TestController : MonoBehaviour
     public static Action<bool> OnInteractRequest;
 
     [SerializeField] private float speed = 5.0f;
+    [SerializeField] private float _dashStrength = 10f;
+    [SerializeField] private float _dashCooldown = .5f;
 
-    private Vector2 currentDirection = Vector2.zero;
-    private Rigidbody2D rb;
-    private InputBinder inputBinder;
+    private Vector2 m_currentDirection = Vector2.zero;
+    private Rigidbody2D m_rb;
+    private InputBinder m_inputBinder;
+    private Vector2 m_dashExtraStrength;
 
     void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-        inputBinder = GetComponent<InputBinder>();
+        m_rb = GetComponent<Rigidbody2D>();
+        m_inputBinder = GetComponent<InputBinder>();
     }
 
     void Update()
     {
-        Vector2 lastDirection = currentDirection;
-        currentDirection = Vector2.zero;
+        Vector2 lastDirection = m_currentDirection;
+        m_currentDirection = Vector2.zero;
+        // m_dashExtraStrength = Vector2.zero;
 
-        if (inputBinder.GetMoveLeftInput())
+        if (m_inputBinder.GetMoveLeftInput())
         {
-            currentDirection += Vector2.left;
+            m_currentDirection += Vector2.left;
         }
-        if (inputBinder.GetMoveUpInput())
+        if (m_inputBinder.GetMoveUpInput())
         {
-            currentDirection += Vector2.up;
+            m_currentDirection += Vector2.up;
         }
-        if (inputBinder.GetMoveRightInput())
+        if (m_inputBinder.GetMoveRightInput())
         {
-            currentDirection += Vector2.right;
+            m_currentDirection += Vector2.right;
         }
-        if (inputBinder.GetMoveDownInput())
+        if (m_inputBinder.GetMoveDownInput())
         {
-            currentDirection += Vector2.down;
+            m_currentDirection += Vector2.down;
         }
 
-        currentDirection = currentDirection.normalized;
+        m_currentDirection = m_currentDirection.normalized;
         // Debug.Log($"direction: {direction}");
 
-        bool isInteractRequested = inputBinder.GetInteractInput();
+        bool isInteractRequested = m_inputBinder.GetInteractInput();
         OnInteractRequest?.Invoke(isInteractRequested);
 
-        if (currentDirection != Vector2.zero) // Move
+        if (m_currentDirection != Vector2.zero) // Move
         {
-            Broadcaster.TriggerOnAnimationRequest(transform, Utils.GetMovementAnimation(currentDirection));
+            Broadcaster.TriggerOnAnimationRequest(transform, Utils.GetMovementAnimation(m_currentDirection));
         }
         else if (lastDirection != Vector2.zero) // Idle
         {
             Broadcaster.TriggerOnAnimationRequest(transform, Utils.GetIdleAnimation(lastDirection));
         }
+
+        if (m_inputBinder.GetDashInput())
+        {
+            Debug.Log($"[TestController] DashInput");
+            m_dashExtraStrength = m_currentDirection * _dashStrength;
+        }
     }
 
     void FixedUpdate()
     {
-        if (currentDirection != Vector2.zero)
+        if (m_currentDirection != Vector2.zero)
         {
-            rb.AddForce(currentDirection * speed);
+            Vector2 finalForce = m_dashExtraStrength == Vector2.zero ? m_currentDirection * speed : m_dashExtraStrength;
+
+            if (m_dashExtraStrength != Vector2.zero)
+            {
+                m_rb.AddForce(finalForce, ForceMode2D.Impulse);
+                m_dashExtraStrength = Vector2.zero;
+                Debug.Log($"EXTRA");
+            }
+            else
+            {
+                m_rb.AddForce(finalForce);
+            }
+
         }
     }
 }

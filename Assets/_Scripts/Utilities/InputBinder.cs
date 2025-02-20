@@ -44,6 +44,21 @@ public class InputBinder : MonoBehaviour
         return false;
     }
 
+    public bool GetDashInput()
+    {
+        List<KeyCode> targetKeys = new List<KeyCode>();
+        TryGetTargetKeys(InGameActionType.Dash, out targetKeys);
+
+        foreach (var key in targetKeys)
+        {
+            if (Input.GetKeyDown(key))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     #endregion
 
     #region PRIVATE METHODS
@@ -91,7 +106,7 @@ public enum InGameActionType
     MoveRight = 1 << 4,
     MoveDown = 1 << 5,
     Interact = 1 << 6,
-    Jump = 1<<7
+    Dash = 1<<7,
 }
 
 [Serializable]
