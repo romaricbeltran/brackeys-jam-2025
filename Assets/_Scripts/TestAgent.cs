@@ -18,8 +18,23 @@ public class TestAgent : MonoBehaviour
 
     void Update()
     {
+        // In Update for faster testing
+        
+        Vector2 lastDirection = _currentDirection;
+        _currentDirection = new Vector2(navMeshAgent.velocity.x, navMeshAgent.velocity.y);
+       
         navMeshAgent.speed = speed;
         navMeshAgent.stoppingDistance = distanceThreshold;
         navMeshAgent.SetDestination(target.position);
+
+        if (_currentDirection != Vector2.zero) // Move
+        {
+            Broadcaster.TriggerOnAnimationRequest(transform, Utils.GetMovementAnimation(_currentDirection));
+        }
+        else if (lastDirection != Vector2.zero) // Idle
+        {
+            Broadcaster.TriggerOnAnimationRequest(transform, Utils.GetIdleAnimation(lastDirection));
+        }
+        // Debug.Log($"Velocity : {navMeshAgent.velocity}\ndesiredVelocity : {navMeshAgent.desiredVelocity}");
     }
 }

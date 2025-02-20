@@ -12,7 +12,7 @@ public class CollisionHandler : MonoBehaviour
         // If the collided GO's layer is present in this layer mask
         if (((1 << collision.gameObject.layer) & _layerMask) != 0)
         {
-            Debug.Log($"CollisionEnter - {gameObject.name} with {collision.gameObject.name}", this);
+            // Debug.Log($"CollisionEnter - {gameObject.name} with {collision.gameObject.name}", this);
          
             OnCollisionHappened?.Invoke(collision);
         }

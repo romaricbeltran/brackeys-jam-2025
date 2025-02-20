@@ -29,7 +29,7 @@ public class CollisionEffect : MonoBehaviour
 
     protected void ExecuteCollisionEffect(Collision2D collision)
     {
-        Debug.Log($"OnCollisionHappened {gameObject.name}", this);
+        // Debug.Log($"OnCollisionHappened {gameObject.name}", this);
 
         if (selfDestroyOnCollision && ((1 << collision.gameObject.layer) & _instaDeathLayerMask) != 0)
         {
