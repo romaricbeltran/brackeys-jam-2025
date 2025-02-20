@@ -22,7 +22,7 @@ public class HealthUI : MonoBehaviour
 
     private void UpdateHealthUI(HealthComponent healthComponent)
     {
-        if (healthComponent.health > maxHealth)
+        /*if (healthComponent.health > maxHealth)
             return;
         foreach (Image img in _heartsList)
         {
@@ -32,6 +32,6 @@ public class HealthUI : MonoBehaviour
         for (int i = 0; i < healthComponent.health; i++)
         {
             _heartsList[i].sprite = _fullHeartSprite;
-        }
+        }*/
     }
 }
