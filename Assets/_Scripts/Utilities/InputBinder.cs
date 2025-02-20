@@ -9,7 +9,7 @@ using UnityEngine;
 public class InputBinder : MonoBehaviour
 {
     // [SerializeField] List<ActionKeysBinding> _actionKeysBinding;
-    [SerializeField] ActionKeysData _actionKeysData;
+    [SerializeField] ActionKeysSO _actionKeysData;
 
     #region PUBLIC METHODS
 
