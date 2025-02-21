@@ -217,7 +217,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _layerMask:
     serializedVersion: 2
-    m_Bits: 6656
+    m_Bits: 7680
 --- !u!114 &5486241412909879849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,7 +230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87e135f9642b97f429a2632bd48bb0a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selfDestroyOnCollision: 1
+  selfDestroyOnCollision: 0
   _instaDeathLayerMask:
     serializedVersion: 2
     m_Bits: 4096
