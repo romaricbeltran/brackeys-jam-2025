@@ -23,7 +23,12 @@ public class CameraFollow : MonoBehaviour
     {
         if (m_target == null)
         {
-            m_target = GameObject.FindGameObjectWithTag("Player").transform;
+            var tempGO = GameObject.FindGameObjectWithTag("Player");
+
+            if(tempGO != null)
+            {
+                m_target = tempGO.transform;
+            }
         }
         
         return m_target != null;
