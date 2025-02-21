@@ -51,7 +51,7 @@ public class InputBinder : MonoBehaviour
 
     public bool GetDashInput()
     {
-        if(m_isDashCooldown) return false; // GUARD CASE
+        if (m_isDashCooldown) return false; // GUARD CASE
 
         TryGetTargetKeys(InGameActionType.Dash, out List<KeyCode> targetKeys);
 
@@ -60,6 +60,20 @@ public class InputBinder : MonoBehaviour
             if (Input.GetKeyDown(key))
             {
                 m_dashCor = StartCoroutine(DashCooldownCor(_dashCooldown));
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public bool GetPauseInput()
+    {
+        TryGetTargetKeys(InGameActionType.Pause, out List<KeyCode> targetKeys);
+
+        foreach (var key in targetKeys)
+        {
+            if (Input.GetKeyDown(key))
+            {
                 return true;
             }
         }
@@ -123,7 +137,8 @@ public enum InGameActionType
     MoveRight = 1 << 4,
     MoveDown = 1 << 5,
     Interact = 1 << 6,
-    Dash = 1<<7,
+    Dash = 1 << 7,
+    Pause = 1 << 8
 }
 
 [Serializable]

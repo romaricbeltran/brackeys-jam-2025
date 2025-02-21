@@ -73,8 +73,13 @@ public class TestController : MonoBehaviour
 
         if (m_inputBinder.GetDashInput())
         {
-            Debug.Log($"[TestController] DashInput");
             m_dashExtraStrength = m_currentDirection * _dashStrength;
+        }
+
+        if(m_inputBinder.GetPauseInput())
+        {
+            Debug.Log($"[TestController] PauseInput");
+            Broadcaster.TriggerOnPauseRequest(true);
         }
     }
 

@@ -25,3 +25,5 @@ MonoBehaviour:
     targetKeys: 65000000
   - targetInputType: 128
     targetKeys: 20000000
+  - targetInputType: 256
+    targetKeys: 70000000
