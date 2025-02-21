@@ -133,6 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 50
+  _dashStrength: 10
 --- !u!58 &5983170067546357990
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -181,6 +182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _actionKeysData: {fileID: 11400000, guid: 4503a21e0f6bb9a49b8e60b250471aee, type: 2}
+  _dashCooldown: 0.5
 --- !u!114 &3074617246775052123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,6 +212,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selfDestroyOnCollision: 0
   _instaDeathLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  _damageLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  _gameOverLayerMask:
     serializedVersion: 2
     m_Bits: 0
 --- !u!114 &3396513715939407450

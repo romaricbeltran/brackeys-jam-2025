@@ -6,6 +6,8 @@ public class CollisionEffect : MonoBehaviour
 {
     [SerializeField] private bool selfDestroyOnCollision;
     [SerializeField] private LayerMask _instaDeathLayerMask;
+    [SerializeField] private LayerMask _damageLayerMask;
+    [SerializeField] private LayerMask _gameOverLayerMask;
 
     private HealthComponent m_health;
     private CollisionHandler m_collisionHandler;
@@ -31,11 +33,24 @@ public class CollisionEffect : MonoBehaviour
     {
         // Debug.Log($"OnCollisionHappened {gameObject.name}", this);
 
-        if (selfDestroyOnCollision && ((1 << collision.gameObject.layer) & _instaDeathLayerMask) != 0)
+        if (selfDestroyOnCollision || IsLayerInMask(collision.gameObject.layer, _instaDeathLayerMask))
         {
             Destroy(gameObject);
         }
 
-        m_health.ChangeHealth(-1);
+        if (IsLayerInMask(collision.gameObject.layer, _damageLayerMask))
+        {
+            m_health.ChangeHealth(-1);
+        }
+
+        if(IsLayerInMask(collision.gameObject.layer, _gameOverLayerMask))
+        {
+            Broadcaster.TriggerGameOver(new GameOverPayLoad());
+        }
+    }
+
+    private bool IsLayerInMask(int targetLayer, LayerMask filterMask)
+    {
+        return ((1 << targetLayer) & filterMask) != 0;
     }
 }

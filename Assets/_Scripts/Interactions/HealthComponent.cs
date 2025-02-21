@@ -16,5 +16,12 @@ public class HealthComponent : MonoBehaviour
         _health += value;
 
         OnHealthChanged?.Invoke(this);
+
+        if(_health <= 0)
+        {
+            gameObject.SetActive(false);
+        }
     }
+
+
 }
