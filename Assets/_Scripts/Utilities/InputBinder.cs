@@ -9,7 +9,8 @@ using UnityEngine;
 /// </summary>
 public class InputBinder : MonoBehaviour
 {
-    // [SerializeField] List<ActionKeysBinding> _actionKeysBinding;
+    public Action OnDashCooldownFinished;
+
     [SerializeField] ActionKeysSO _actionKeysData;
     [SerializeField] private float _dashCooldown = .5f;
 
@@ -104,6 +105,7 @@ public class InputBinder : MonoBehaviour
 
         yield return new WaitForSeconds(duration);
 
+        OnDashCooldownFinished?.Invoke();
         m_isDashCooldown = false;
         m_dashCor = null;
     }

@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 
+[RequireComponent(typeof(TrailRenderer))]
 public class TestController : MonoBehaviour
 {
     public static Action<bool> OnInteractRequest;
@@ -10,6 +11,7 @@ public class TestController : MonoBehaviour
 
     private Vector2 m_currentDirection = Vector2.zero;
     private Rigidbody2D m_rb;
+    private TrailRenderer m_trailRenderer;
     private InputBinder m_inputBinder;
     private Vector2 m_dashExtraStrength;
 
@@ -17,13 +19,25 @@ public class TestController : MonoBehaviour
     {
         m_rb = GetComponent<Rigidbody2D>();
         m_inputBinder = GetComponent<InputBinder>();
+        m_trailRenderer = GetComponent<TrailRenderer>();
+        m_trailRenderer.emitting = false;
     }
 
+    private void OnEnable()
+    {
+        m_inputBinder.OnDashCooldownFinished -= OnDashAvailable;
+        m_inputBinder.OnDashCooldownFinished += OnDashAvailable;
+    }
+
+    private void OnDisable()
+    {
+        m_inputBinder.OnDashCooldownFinished -= OnDashAvailable;
+
+    }
     void Update()
     {
         Vector2 lastDirection = m_currentDirection;
         m_currentDirection = Vector2.zero;
-        // m_dashExtraStrength = Vector2.zero;
 
         if (m_inputBinder.GetMoveLeftInput())
         {
@@ -43,7 +57,7 @@ public class TestController : MonoBehaviour
         }
 
         m_currentDirection = m_currentDirection.normalized;
-        // Debug.Log($"direction: {direction}");
+        // Debug.Log($"direction: {m_currentDirection}");
 
         bool isInteractRequested = m_inputBinder.GetInteractInput();
         OnInteractRequest?.Invoke(isInteractRequested);
@@ -74,7 +88,12 @@ public class TestController : MonoBehaviour
             {
                 m_rb.AddForce(finalForce, ForceMode2D.Impulse);
                 m_dashExtraStrength = Vector2.zero;
-                Debug.Log($"EXTRA");
+                Debug.Log($"DASH!!!");
+
+                // Play sound
+                Broadcaster.TriggerOnAudioRequest(AudioClipType.Dash);
+                // Animate
+                m_trailRenderer.emitting = true;
             }
             else
             {
@@ -82,6 +101,11 @@ public class TestController : MonoBehaviour
             }
 
         }
+    }
+
+    private void OnDashAvailable()
+    {
+        m_trailRenderer.emitting = false;
     }
 }
 
