@@ -30,6 +30,11 @@
 .vscode/
 *.code-workspace
 
+# JetBrains Rider specific files
+.idea/
+.idea/*
+/[Aa]ssets/Plugins/Editor/JetBrains*
+
 # Gradle cache directory
 .gradle/
 
