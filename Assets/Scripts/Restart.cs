@@ -6,20 +6,19 @@ public class Restart : MonoBehaviour
     public GameObject worldPrefab;
     private GameObject currentWorld;
 
-    void Start()
-    {
-        LoadWorld();
-    }
-
     private void OnEnable()
     {
-        Broadcaster.OnGameOver -= RestartWorld;
-        Broadcaster.OnGameOver += RestartWorld;
+        Broadcaster.OnGameStart -= RestartWorld;
+        Broadcaster.OnGameStart += RestartWorld;
+
+        Broadcaster.OnBackToMainPanel -= DestroyCurrentWorld;
+        Broadcaster.OnBackToMainPanel += DestroyCurrentWorld;
     }
 
     private void OnDisable()
     {
-        Broadcaster.OnGameOver -= RestartWorld;
+        Broadcaster.OnGameStart -= RestartWorld;
+        Broadcaster.OnBackToMainPanel -= DestroyCurrentWorld;
     }
 
     private void RestartWorld(GameOverPayLoad gameOverPayLoad)
