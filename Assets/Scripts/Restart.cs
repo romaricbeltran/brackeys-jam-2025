@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,9 +5,6 @@ public class Restart : MonoBehaviour
 {
     public GameObject worldPrefab;
     private GameObject currentWorld;
-    [SerializeField] private HealthComponent _healthComponent;
-    [SerializeField] private HealthUI _healthUI;
-    //public Player player; // Assign  player in the Inspector
 
     void Start()
     {
@@ -26,47 +22,34 @@ public class Restart : MonoBehaviour
         Broadcaster.OnGameOver -= RestartWorld;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            GameOverPayLoad gameOverPayLoad = new GameOverPayLoad();
-            Broadcaster.TriggerGameOver(gameOverPayLoad);
-        }
-    }
-
     private void RestartWorld(GameOverPayLoad gameOverPayLoad)
     {
+        Debug.Log($"RestartWorld callback to OnGameOver", this);
+
         //Destroy the current world then instantiate a new one
-        if (currentWorld != null)
-        {
-            Destroy(currentWorld);
-        }
         LoadWorld();
-        //player.ResetPlayer(); // Reset player position
-        
+
         //Find every object with IResettable then reset them
         List<IResettable> resettableObjects = ResettableRegistry.GetAll();
         foreach (var obj in resettableObjects)
         {
             obj.ResetState();
         }
-
-        RestartCarrierHealth();
-
     }
 
-    private void LoadWorld()
+    public void LoadWorld()
     {
+        DestroyCurrentWorld();
+
         currentWorld = Instantiate(worldPrefab);
     }
-
-    private void RestartCarrierHealth()
+    
+    private void DestroyCurrentWorld()
     {
-        //This one needs to access the health inside HealthComponent so that it can change the health to default value
-        //_healthComponent._health = _healthComponent.MaxHealth;
-        _healthUI.UpdateHealthUI(_healthComponent);
-        
+        if (currentWorld != null)
+        {
+            Destroy(currentWorld);
+        }
     }
 }
 
