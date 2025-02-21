@@ -42,6 +42,7 @@ public enum AudioClipType
     PickupFlower,
     ActivateLever,
     BringFlowerToCarrier,
+    Dash,
     CarrierHit,
     CarrierDies,
     Projectile,
