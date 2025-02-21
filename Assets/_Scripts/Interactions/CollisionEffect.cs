@@ -35,6 +35,10 @@ public class CollisionEffect : MonoBehaviour
 
         if (selfDestroyOnCollision || IsLayerInMask(collision.gameObject.layer, _instaDeathLayerMask))
         {
+            if(gameObject.CompareTag("Carrier"))
+            {
+                Broadcaster.TriggerGameOver(new GameOverPayLoad());
+            }
             Destroy(gameObject);
         }
 

@@ -39,6 +39,9 @@ public class UIRoot : MonoBehaviour
         Broadcaster.OnGameOver -= HandleGameOver;
         Broadcaster.OnGameOver += HandleGameOver;
 
+        HealthComponent.OnHealthChanged -= OnHealthChange;
+        HealthComponent.OnHealthChanged += OnHealthChange;
+
         _startButton.onClick.RemoveListener(StartGameRequest);
         _startButton.onClick.AddListener(StartGameRequest);
 
@@ -73,6 +76,7 @@ public class UIRoot : MonoBehaviour
         Broadcaster.OnGameStart -= HandleGameStart;
         Broadcaster.OnPauseRequest -= HandlePauseRequest;
         Broadcaster.OnGameOver -= HandleGameOver;
+        HealthComponent.OnHealthChanged -= OnHealthChange;
 
         _startButton.onClick.RemoveListener(StartGameRequest);
         _resumeButton.onClick.RemoveListener(ResumeGameRequest);
@@ -111,6 +115,17 @@ public class UIRoot : MonoBehaviour
     {
         Broadcaster.TriggerOnBackToMainPanel();
         EnablePanel(UIPanelType.MainPanel);
+    }
+
+    private void OnHealthChange(HealthComponent healthComponent)
+    {
+        if(healthComponent.transform.CompareTag("Carrier"))
+        {
+            if(healthComponent.IsDead)
+            {
+                Broadcaster.TriggerGameOver(new GameOverPayLoad());
+            }
+        }
     }
 
     private void EnablePanel(UIPanelType panelType, bool isActive = true)
