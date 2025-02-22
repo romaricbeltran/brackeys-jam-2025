@@ -16,7 +16,7 @@ public class TestAgent : MonoBehaviour
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
-        
+        navMeshAgent.enabled = true;
     }
 
 
