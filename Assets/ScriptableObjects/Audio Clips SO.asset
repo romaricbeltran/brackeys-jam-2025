@@ -15,19 +15,28 @@ MonoBehaviour:
   _audioClipHandlers:
   - _audioClipType: 1
     _audioClip: {fileID: 8300000, guid: f18da36197d95a249b24ace5b6294f3f, type: 3}
+    _audioClips: []
   - _audioClipType: 2
     _audioClip: {fileID: 8300000, guid: f6bebfdd003536c469eb92603b365002, type: 3}
+    _audioClips: []
   - _audioClipType: 3
     _audioClip: {fileID: 8300000, guid: 6be71741ea9c8ab43abf5ce462f7e370, type: 3}
+    _audioClips: []
   - _audioClipType: 4
     _audioClip: {fileID: 8300000, guid: c480f666fdb2a694aab3a86b89cfd466, type: 3}
+    _audioClips: []
   - _audioClipType: 5
     _audioClip: {fileID: 8300000, guid: 5114e7b0487db684c812c5ca40be7536, type: 3}
+    _audioClips: []
   - _audioClipType: 6
     _audioClip: {fileID: 8300000, guid: cd99601e4efd35948adc5ed9f8e6c108, type: 3}
+    _audioClips: []
   - _audioClipType: 7
     _audioClip: {fileID: 8300000, guid: 875e72cc32f99c74488cd5bb13c80816, type: 3}
+    _audioClips: []
   - _audioClipType: 8
     _audioClip: {fileID: 8300000, guid: 78f2e192170fd5b48913ec2849d25b77, type: 3}
+    _audioClips: []
   - _audioClipType: 9
-    _audioClip: {fileID: 8300000, guid: 7be71f5aa7bcd0d41898263101b457d8, type: 3}
+    _audioClip: {fileID: 8300000, guid: 8a08b30e3fc63e64887353847110a455, type: 3}
+    _audioClips: []
