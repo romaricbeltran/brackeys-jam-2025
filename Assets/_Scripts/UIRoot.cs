@@ -10,6 +10,7 @@ public class UIRoot : MonoBehaviour
 
     [SerializeField] RectTransform _mainPanel;
     [SerializeField] RectTransform _settingsPanel;
+    [SerializeField] RectTransform _gamePanel;
     [SerializeField] RectTransform _pausePanel;
     [SerializeField] RectTransform _gameOverPanel;
 
@@ -64,11 +65,13 @@ public class UIRoot : MonoBehaviour
     private void StartGameRequest()
     {
         Broadcaster.TriggerOnGameStart(new GameOverPayLoad());
+        EnablePanel(UIPanelType.GamePanel);
     }
 
     private void ResumeGameRequest()
     {
         Broadcaster.TriggerOnPauseRequest(false);
+        EnablePanel(UIPanelType.GamePanel);
     }
 
     private void OnDisable()
@@ -130,10 +133,16 @@ public class UIRoot : MonoBehaviour
 
     private void EnablePanel(UIPanelType panelType, bool isActive = true)
     {
+        if(Time.timeScale == 0f)
+        {
+            Time.timeScale = 1f;
+        }
+
         Broadcaster.TriggerOnAudioRequest(AudioClipType.ButtonClick);
 
         _mainBackground.gameObject.SetActive(false);
         _mainPanel.gameObject.SetActive(false);
+        _gamePanel.gameObject.SetActive(false);
         _pausePanel.gameObject.SetActive(false);
         _settingsPanel.gameObject.SetActive(false);
         _gameOverPanel.gameObject.SetActive(false);
@@ -146,7 +155,12 @@ public class UIRoot : MonoBehaviour
                 break;
 
             case UIPanelType.PausePanel:
+                Time.timeScale = 0f;
                 _pausePanel.gameObject.SetActive(isActive);
+                break;
+
+            case UIPanelType.GamePanel:
+                _gamePanel.gameObject.SetActive(isActive);
                 break;
 
             case UIPanelType.SettingsPanel:
@@ -170,6 +184,7 @@ public enum UIPanelType
 {
     None,
     MainPanel,
+    GamePanel,
     PausePanel,
     SettingsPanel,
     GameOverPanel
