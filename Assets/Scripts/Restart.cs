@@ -11,6 +11,9 @@ public class Restart : MonoBehaviour
         Broadcaster.OnGameStart -= RestartWorld;
         Broadcaster.OnGameStart += RestartWorld;
 
+        Broadcaster.OnGameOver -= DestroyCurrentWorld;
+        Broadcaster.OnGameOver += DestroyCurrentWorld;
+
         Broadcaster.OnBackToMainPanel -= DestroyCurrentWorld;
         Broadcaster.OnBackToMainPanel += DestroyCurrentWorld;
     }
@@ -18,6 +21,7 @@ public class Restart : MonoBehaviour
     private void OnDisable()
     {
         Broadcaster.OnGameStart -= RestartWorld;
+        Broadcaster.OnGameOver -= DestroyCurrentWorld;
         Broadcaster.OnBackToMainPanel -= DestroyCurrentWorld;
     }
 
@@ -49,6 +53,11 @@ public class Restart : MonoBehaviour
         {
             Destroy(currentWorld);
         }
+    }
+
+    private void DestroyCurrentWorld(GameOverPayLoad _)
+    {
+        DestroyCurrentWorld();
     }
 }
 
