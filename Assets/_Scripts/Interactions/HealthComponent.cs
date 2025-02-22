@@ -17,6 +17,10 @@ public class HealthComponent : MonoBehaviour
         {
             Broadcaster.TriggerOnAudioRequest(AudioClipType.CarrierHit);
         }
+        else
+        {
+            Broadcaster.TriggerOnAudioRequest(AudioClipType.BringFlowerToCarrier);
+        }
 
         _health += value;
 
