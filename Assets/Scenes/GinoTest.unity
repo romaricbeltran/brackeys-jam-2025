@@ -518,17 +518,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3420646124868804652, guid: 5b62bb74c4a7e204483a2591059e02d2, type: 3}
-      propertyPath: m_NavMeshData
-      value: 
-      objectReference: {fileID: 23800000, guid: f3d42951089c7ca41a7f090a83c28bea, type: 2}
     - target: {fileID: 7047624826524340256, guid: 5b62bb74c4a7e204483a2591059e02d2, type: 3}
       propertyPath: m_Name
       value: EnableOnAwake
-      objectReference: {fileID: 0}
-    - target: {fileID: 8425476690019449308, guid: 5b62bb74c4a7e204483a2591059e02d2, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
