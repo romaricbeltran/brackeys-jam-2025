@@ -3,28 +3,6 @@ using UnityEngine;
 public class FlowerPotion : MonoBehaviour
 {
 
-    #region Gino Code
-
-    public void PickUpFLower()
-    {
-        var tempCarrierRef = GameObject.FindGameObjectWithTag("Carrier");
-
-        if(tempCarrierRef != null)
-        {
-            var carrierHealthComponent = tempCarrierRef.GetComponent<HealthComponent>();
-
-            if(carrierHealthComponent != null)
-            {
-                carrierHealthComponent.ChangeHealth(+1);
-                Destroy(gameObject);
-            }
-        }
-    }
-
-    #endregion
-    
-   
-    [SerializeField] HealthComponent _healthComponent;
     private bool _playerCollided;
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -40,8 +18,18 @@ public class FlowerPotion : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("Carrier") && _playerCollided)
         {
-            _healthComponent.ChangeHealth(1);
-            Destroy(gameObject);
+            var tempCarrierRef = GameObject.FindGameObjectWithTag("Carrier");
+
+            if(tempCarrierRef != null)
+            {
+                var carrierHealthComponent = tempCarrierRef.GetComponent<HealthComponent>();
+
+                if(carrierHealthComponent != null)
+                {
+                    carrierHealthComponent.ChangeHealth(+1);
+                    Destroy(gameObject);
+                }
+            }
         }
     }
 
