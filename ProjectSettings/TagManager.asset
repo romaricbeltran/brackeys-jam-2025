@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Carrier
   - World
+  - FlowerHolder
   layers:
   - Default
   - TransparentFX
