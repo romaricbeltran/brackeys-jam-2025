@@ -2,13 +2,19 @@ using UnityEngine;
 
 public class FlowerPotion : MonoBehaviour
 {
-    [SerializeField] HealthComponent _healthComponent;
-
-    private void OnTriggerEnter2D(Collider2D other)
+    public void PickUpFLower()
     {
-        if (other.gameObject.CompareTag("Player"))
+        var tempCarrierRef = GameObject.FindGameObjectWithTag("Carrier");
+
+        if(tempCarrierRef != null)
         {
-            _healthComponent.ChangeHealth(1);
+            var carrierHealthComponent = tempCarrierRef.GetComponent<HealthComponent>();
+
+            if(carrierHealthComponent != null)
+            {
+                carrierHealthComponent.ChangeHealth(+1);
+                Destroy(gameObject);
+            }
         }
     }
 }
