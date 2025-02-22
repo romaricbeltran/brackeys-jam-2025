@@ -11,22 +11,17 @@ public class Shooter : MonoBehaviour
     private Coroutine m_corRef;
     private bool isStop;
     private Transform m_target;
-    private Transform m_player;
-    private Transform m_carrier;
 
     private void Start()
     {
-        FindStaticReferences();
+        FindStaticTargetReference();
         TriggerShootingCor();
     }
 
-    private void FindStaticReferences()
+    private void FindStaticTargetReference()
     {
-        GameObject playerGO = GameObject.FindGameObjectWithTag("Player");
-        if (playerGO != null) m_player = playerGO.transform;
-
         GameObject carrierGO = GameObject.FindGameObjectWithTag("Carrier");
-        if (carrierGO != null) m_carrier = carrierGO.transform;
+        if (carrierGO != null) m_target = carrierGO.transform;
     }
 
     public void TriggerShootingCor()
@@ -42,10 +37,9 @@ public class Shooter : MonoBehaviour
         while (!isStop)
         {
             yield return new WaitForSeconds(_shootingInterval);
-            m_target = FindTarget();
             if (m_target && CanSeeTarget(m_target))
             {
-                SpawnProjectile();
+                SpawnProjectile(m_target);
             }
         }
 
@@ -67,43 +61,14 @@ public class Shooter : MonoBehaviour
         if (healthComponent.gameObject.CompareTag("Carrier") && healthComponent.IsDead)
         {
             isStop = true;
-            m_carrier = null;
+            m_target = null;
         }
     }
 
-    private void SpawnProjectile()
+    private void SpawnProjectile(Transform target)
     {
-        if (!m_target) return;
-
         Projectile spawnedProjectile = Instantiate(_projectilePrefab, transform.position, Quaternion.identity);
-        spawnedProjectile.Init(m_target);
-    }
-
-    private Transform FindTarget()
-    {
-        Transform bestTarget = null;
-        float bestDistance = Mathf.Infinity;
-
-        if (m_carrier)
-        {
-            float carrierDist = Vector2.Distance(transform.position, m_carrier.position);
-            if (carrierDist <= _shootingRange)
-            {
-                bestTarget = m_carrier;
-                bestDistance = carrierDist;
-            }
-        }
-
-        if (m_player)
-        {
-            float playerDist = Vector2.Distance(transform.position, m_player.position);
-            if (playerDist <= _shootingRange && playerDist < bestDistance)
-            {
-                bestTarget = m_player;
-            }
-        }
-
-        return bestTarget;
+        spawnedProjectile.Init(target);
     }
 
     private bool CanSeeTarget(Transform target)
