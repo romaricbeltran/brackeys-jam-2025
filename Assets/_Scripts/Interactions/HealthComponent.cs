@@ -24,7 +24,7 @@ public class HealthComponent : MonoBehaviour
 
         if(_health <= 0)
         {
-            Broadcaster.TriggerOnAudioRequest(AudioClipType.GameOver);
+            Broadcaster.TriggerOnAudioRequest(AudioClipType.CarrierDies);
             gameObject.SetActive(false);
         }
     }
