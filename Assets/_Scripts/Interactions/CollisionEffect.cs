@@ -40,6 +40,7 @@ public class CollisionEffect : MonoBehaviour
                 Broadcaster.TriggerGameOver(new GameOverPayLoad());
             }
             Destroy(gameObject);
+            return;
         }
 
         if (IsLayerInMask(collision.gameObject.layer, _damageLayerMask))

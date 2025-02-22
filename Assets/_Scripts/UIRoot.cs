@@ -130,6 +130,8 @@ public class UIRoot : MonoBehaviour
 
     private void EnablePanel(UIPanelType panelType, bool isActive = true)
     {
+        Broadcaster.TriggerOnAudioRequest(AudioClipType.ButtonClick);
+
         _mainBackground.gameObject.SetActive(false);
         _mainPanel.gameObject.SetActive(false);
         _pausePanel.gameObject.SetActive(false);

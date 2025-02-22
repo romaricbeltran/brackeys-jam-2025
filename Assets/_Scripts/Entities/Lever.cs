@@ -16,6 +16,11 @@ public class Lever : MonoBehaviour
 
     public void ToggleDoors()
     {
+        if(_doors.Count > 0)
+        {
+            Broadcaster.TriggerOnAudioRequest(AudioClipType.ActivateLever);
+        }
+
         foreach(var door in _doors)
         {
             door.gameObject.SetActive(!door.gameObject.activeSelf);
