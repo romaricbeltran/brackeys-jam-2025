@@ -17,7 +17,7 @@ public class AudioClipsSO : ScriptableObject
         {
             if (audioClipHandler.AudioClipType == audioClipTypeTarget)
             {
-                targetAudioCLip = audioClipHandler.TargetClip;
+                targetAudioCLip = audioClipHandler.RandomAudioClip;
                 return true;
             }
         }
@@ -31,8 +31,27 @@ public class AudioClipHandler
 {
     [SerializeField] private AudioClipType _audioClipType;
     [SerializeField] private AudioClip _audioClip;
+    [SerializeField] private List<AudioClip> _audioClips;
     public AudioClipType AudioClipType => _audioClipType;
-    public AudioClip TargetClip => _audioClip;
+    public AudioClip RandomAudioClip => GetRandomAudioClip();
+
+    private AudioClip GetRandomAudioClip()
+    {
+        if (_audioClips.Count > 0)
+        {
+            List<AudioClip> tempList = _audioClips;
+
+            if (_audioClip != null)
+            {
+                tempList.Add(_audioClip);
+            }
+
+            int randomIndex = UnityEngine.Random.Range(0, tempList.Count);
+            return tempList[randomIndex];
+        }
+
+        return _audioClip;
+    }
 }
 
 public enum AudioClipType
