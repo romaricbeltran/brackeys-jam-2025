@@ -288,6 +288,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EventSystem
       objectReference: {fileID: 0}
+    - target: {fileID: 2693963160802981583, guid: cad2b29a2c6a6f945b8095b626065e5d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -317,6 +321,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3302995533498292476, guid: 9c49b78c87f6dd04b9056e0d05f91627, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3302995533498292476, guid: 9c49b78c87f6dd04b9056e0d05f91627, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6160540696280981215, guid: 9c49b78c87f6dd04b9056e0d05f91627, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -330,6 +342,22 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6160540696280981215, guid: 9c49b78c87f6dd04b9056e0d05f91627, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6728655061265553461, guid: 9c49b78c87f6dd04b9056e0d05f91627, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6728655061265553461, guid: 9c49b78c87f6dd04b9056e0d05f91627, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6728655061265553461, guid: 9c49b78c87f6dd04b9056e0d05f91627, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6728655061265553461, guid: 9c49b78c87f6dd04b9056e0d05f91627, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
@@ -417,6 +445,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIRoot
       objectReference: {fileID: 0}
+    - target: {fileID: 7963459263289132704, guid: 9c49b78c87f6dd04b9056e0d05f91627, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8148093918159835722, guid: 9c49b78c87f6dd04b9056e0d05f91627, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -496,7 +528,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8425476690019449308, guid: 5b62bb74c4a7e204483a2591059e02d2, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
