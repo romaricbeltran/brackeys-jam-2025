@@ -43,7 +43,7 @@ public class AnimationHandler : MonoBehaviour
 
         m_currentAnimationType = animationType;
         string animationTypeStr = animationType.ToString();
-        Debug.Log($"I received this animation request {gameObject.name}", this);
+        // Debug.Log($"I received this animation request {gameObject.name}", this);
         m_anim.SetTrigger(animationTypeStr);
     }
 }
