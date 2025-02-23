@@ -51,27 +51,7 @@ public class CollisionEffect : MonoBehaviour
         {
             if (_isCarrierReplicatingOnCollision)
             {
-                if (gameObject.CompareTag("Carrier") && _testAgentPrefab != null)
-                {
-                    var tempGO = Instantiate(_testAgentPrefab, transform.parent);
-                    tempGO.transform.position = transform.position;
-
-                    // Access rigidbody and give a push
-                    var agentRb = tempGO.GetComponent<Rigidbody2D>();
-                    if (agentRb != null)
-                    {
-                        // Genera una direzione casuale in 2D
-                        Vector2 randomDirection = Random.insideUnitCircle.normalized;
-
-                        // Applica una forza impulsiva
-                        agentRb.AddForce(randomDirection * _impulseMagnitude, ForceMode2D.Impulse);
-                    }
-                }
-            }
-            else
-            {
                 m_health.ChangeHealth(-1);
-
             }
         }
 
