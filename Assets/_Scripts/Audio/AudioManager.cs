@@ -13,7 +13,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-       PlayAudio(AudioClipType.MainTheme);
+        PlayAudio(AudioClipType.MainTheme);
     }
 
     private void OnEnable()
@@ -33,11 +33,15 @@ public class AudioManager : MonoBehaviour
 
     private void PlayAudio(AudioClipType mainThemeType)
     {
-        Debug.LogWarning("YOU REQUESTED THE SAME MAIN TYPE, WON'T BE PLAYED!!!");
-        
-        if(m_currentMainTheme == mainThemeType) return; // GUARD CASE
 
-        if(_audioClipsSO.TryGetTargetAudioClipType(mainThemeType, out AudioClip mainThemeClip))
+        if (m_currentMainTheme == mainThemeType)
+        {
+            Debug.LogWarning("YOU REQUESTED THE SAME MAIN TYPE, WON'T BE PLAYED!!!");
+
+            return; // GUARD CASE
+        }
+
+        if (_audioClipsSO.TryGetTargetAudioClipType(mainThemeType, out AudioClip mainThemeClip))
         {
             m_currentMainTheme = mainThemeType;
             m_mainMusicSource.clip = mainThemeClip;
