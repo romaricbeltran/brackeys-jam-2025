@@ -9,6 +9,10 @@ public class CollisionEffect : MonoBehaviour
     [SerializeField] private LayerMask _damageLayerMask;
     [SerializeField] private LayerMask _gameOverLayerMask;
 
+    [SerializeField] private TestAgent _testAgentPrefab;
+    [SerializeField] private float _impulseMagnitude = 5f;
+
+    [SerializeField] private bool _isCarrierReplicatingOnCollision = true;
     private HealthComponent m_health;
     private CollisionHandler m_collisionHandler;
 
@@ -35,7 +39,7 @@ public class CollisionEffect : MonoBehaviour
 
         if (selfDestroyOnCollision || IsLayerInMask(collision.gameObject.layer, _instaDeathLayerMask))
         {
-            if(gameObject.CompareTag("Carrier"))
+            if (gameObject.CompareTag("Carrier"))
             {
                 Broadcaster.TriggerGameOver(new GameOverPayLoad(false));
             }
@@ -45,10 +49,33 @@ public class CollisionEffect : MonoBehaviour
 
         if (IsLayerInMask(collision.gameObject.layer, _damageLayerMask))
         {
-            m_health.ChangeHealth(-1);
+            if (_isCarrierReplicatingOnCollision)
+            {
+                if (gameObject.CompareTag("Carrier") && _testAgentPrefab != null)
+                {
+                    var tempGO = Instantiate(_testAgentPrefab, transform.parent);
+                    tempGO.transform.position = transform.position;
+
+                    // Access rigidbody and give a push
+                    var agentRb = tempGO.GetComponent<Rigidbody2D>();
+                    if (agentRb != null)
+                    {
+                        // Genera una direzione casuale in 2D
+                        Vector2 randomDirection = Random.insideUnitCircle.normalized;
+
+                        // Applica una forza impulsiva
+                        agentRb.AddForce(randomDirection * _impulseMagnitude, ForceMode2D.Impulse);
+                    }
+                }
+            }
+            else
+            {
+                m_health.ChangeHealth(-1);
+
+            }
         }
 
-        if(IsLayerInMask(collision.gameObject.layer, _gameOverLayerMask))
+        if (IsLayerInMask(collision.gameObject.layer, _gameOverLayerMask))
         {
             Broadcaster.TriggerGameOver(new GameOverPayLoad(true));
         }
