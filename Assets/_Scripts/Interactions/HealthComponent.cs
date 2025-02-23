@@ -6,6 +6,8 @@ public class HealthComponent : MonoBehaviour
     public static Action<HealthComponent> OnHealthChanged;
 
     [SerializeField] private int _health = 10;
+    [SerializeField] private int _maxHealth = 5;
+    
     public int Health => _health;
     public int MaxHealth => 5;
     public bool IsDead => _health <= 0;
@@ -31,7 +33,7 @@ public class HealthComponent : MonoBehaviour
             Broadcaster.TriggerOnShortAudioRequest(AudioClipType.BringFlowerToCarrier);
         }
 
-        _health += value;
+        _health = Mathf.Clamp(_health + value, 0, _maxHealth);
 
         OnHealthChanged?.Invoke(this);
 

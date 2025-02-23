@@ -45,20 +45,10 @@ public class GamePanel : MonoBehaviour
         }
         _currentHearts.Clear();
 
-        // Full hearts
-        for(int i = 0; i < healthComponent.Health; ++i)
+        for (int i = 0; i < healthComponent.MaxHealth; ++i)
         {
             var tempImage = Instantiate(_healthImagePrefab, _imagesParent);
-            tempImage.sprite = _fullHearthSprite;
-            _currentHearts.Add(tempImage);
-        }
-
-        // Empty hearts
-        int startIndex = healthComponent.MaxHealth - healthComponent.Health;
-        for(int i = startIndex; i > 0; --i)
-        {
-            var tempImage = Instantiate(_healthImagePrefab, _imagesParent);
-            tempImage.sprite = _emptyHearthSprite;
+            tempImage.sprite = (i < healthComponent.Health) ? _fullHearthSprite : _emptyHearthSprite;
             _currentHearts.Add(tempImage);
         }
     }
