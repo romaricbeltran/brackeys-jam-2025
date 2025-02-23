@@ -5,6 +5,7 @@ public static class Broadcaster
 {
     public static event Action<AudioClipType> OnShortAudioRequest;
     public static event Action<AudioClipType> OnAudioRequest;
+    public static event Action OnStopAudioRequest;
     public static event Action<Transform, AnimationType> OnPlayerAnimationRequest;
 
     public static event Action<GameOverPayLoad> OnGameOver;
@@ -21,6 +22,11 @@ public static class Broadcaster
     {
         OnAudioRequest?.Invoke(mainThemeType);
     }
+    
+    public static void TriggerOnStopAudioRequest()
+    {
+        OnStopAudioRequest?.Invoke();
+    }
 
     public static void TriggerOnAnimationRequest(Transform sender, AnimationType animationType)
     {
@@ -30,6 +36,8 @@ public static class Broadcaster
     public static void TriggerGameOver(GameOverPayLoad gameOverPayLoad)
     {
         OnGameOver?.Invoke(gameOverPayLoad);
+
+        TriggerOnStopAudioRequest();
 
         if (gameOverPayLoad.IsVictory)
         {

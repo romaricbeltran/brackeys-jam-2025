@@ -23,29 +23,33 @@ public class AudioManager : MonoBehaviour
 
         Broadcaster.OnAudioRequest -= PlayAudio;
         Broadcaster.OnAudioRequest += PlayAudio;
+        
+        Broadcaster.OnStopAudioRequest -= StopAudio;
+        Broadcaster.OnStopAudioRequest += StopAudio;
     }
 
     private void OnDisable()
     {
         Broadcaster.OnShortAudioRequest -= PlayShortAudio;
         Broadcaster.OnAudioRequest -= PlayAudio;
+        Broadcaster.OnStopAudioRequest -= StopAudio;
     }
 
     private void PlayAudio(AudioClipType mainThemeType)
     {
-
-        if (m_currentMainTheme == mainThemeType)
-        {
-            Debug.LogWarning("YOU REQUESTED THE SAME MAIN TYPE, WON'T BE PLAYED!!!");
-
-            return; // GUARD CASE
-        }
-
         if (_audioClipsSO.TryGetTargetAudioClipType(mainThemeType, out AudioClip mainThemeClip))
         {
             m_currentMainTheme = mainThemeType;
             m_mainMusicSource.clip = mainThemeClip;
             m_mainMusicSource.Play();
+        }
+    }
+    
+    private void StopAudio()
+    {
+        if (m_mainMusicSource.isPlaying)
+        {
+            m_mainMusicSource.Stop();
         }
     }
 

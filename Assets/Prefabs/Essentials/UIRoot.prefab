@@ -2093,7 +2093,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 250, y: 350}
+  m_SizeDelta: {x: 400, y: 550}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2834780240002436120
 CanvasRenderer:
@@ -2123,13 +2123,23 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'You are invincible but the heart is not.
+  m_text: 'Umay, the celestial mother goddess, descends from her divine realm to
+    breathe life into newborns. During this sacred ritual, she offers her fragile
+    heart to the statue, a gift of pure creation.
 
-    Protect the Heart of Umay
-    until it reaches the statue!
 
-    Intercept projectiles, open doors and feed
-    the Heart to keep it alive.'
+    But in the shadows lurk the
+    minions of the underworld god, dark beings who seek to shatter the heart and
+    bring ruin to the innocent.
+
+
+    You are a devoted follower of Umay, blessed
+    with divine speed and invulnerability. Protect the heart at all costs : intercept
+    projectiles, open doors, and feed the heart to keep it alive.
+
+
+    The fate
+    of the newborns lies in your hands.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a2cc50511660bf54ab1591436c667f31, type: 2}
   m_sharedMaterial: {fileID: 2479835660540449529, guid: a2cc50511660bf54ab1591436c667f31, type: 2}
@@ -2156,7 +2166,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35
+  m_fontSize: 28.05
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
