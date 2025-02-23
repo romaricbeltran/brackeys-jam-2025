@@ -13,9 +13,16 @@ public class HealthComponent : MonoBehaviour
     // value may be negative or positive
     public void ChangeHealth(int value)
     {
-        if(value < 0)
+        if (value < 0)
         {
-            Broadcaster.TriggerOnShortAudioRequest(AudioClipType.CarrierHit);
+            if (gameObject.CompareTag("Carrier"))
+            {
+                Broadcaster.TriggerOnShortAudioRequest(AudioClipType.CarrierHit);
+            }
+            else if (gameObject.CompareTag("Player"))
+            {
+                Broadcaster.TriggerOnShortAudioRequest(AudioClipType.PlayerHit);
+            }
         }
         else
         {
@@ -26,12 +33,10 @@ public class HealthComponent : MonoBehaviour
 
         OnHealthChanged?.Invoke(this);
 
-        if(_health <= 0)
+        if (_health <= 0)
         {
             Broadcaster.TriggerOnShortAudioRequest(AudioClipType.CarrierDies);
             gameObject.SetActive(false);
         }
     }
-
-
 }
