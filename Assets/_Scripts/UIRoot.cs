@@ -13,6 +13,7 @@ public class UIRoot : MonoBehaviour
     [SerializeField] RectTransform _gamePanel;
     [SerializeField] RectTransform _pausePanel;
     [SerializeField] RectTransform _gameOverPanel;
+    [SerializeField] RectTransform _carrierDeadOverlay;
 
     [Space]
     [Space]
@@ -99,9 +100,10 @@ public class UIRoot : MonoBehaviour
         EnablePanel(UIPanelType.PausePanel, isActive);
     }
 
-    private void HandleGameOver(GameOverPayLoad _)
+    private void HandleGameOver(GameOverPayLoad gameOverPayLoad)
     {
         EnablePanel(UIPanelType.GameOverPanel);
+        _carrierDeadOverlay.gameObject.SetActive(!gameOverPayLoad.IsVictory);
     }
 
     private void HandleOptionButtonRequest()
@@ -126,7 +128,7 @@ public class UIRoot : MonoBehaviour
         {
             if(healthComponent.IsDead)
             {
-                Broadcaster.TriggerGameOver(new GameOverPayLoad());
+                Broadcaster.TriggerGameOver(new GameOverPayLoad(false));
             }
         }
     }

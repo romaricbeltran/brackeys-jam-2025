@@ -44,5 +44,10 @@ public static class Broadcaster
 
 public struct GameOverPayLoad
 {
+    public bool IsVictory;
 
+    public GameOverPayLoad(bool isVictory = true)
+    {
+        IsVictory = isVictory;
+    }
 }
