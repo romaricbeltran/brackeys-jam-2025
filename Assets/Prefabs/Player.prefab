@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 50
-  _dashStrength: 10
+  _dashStrength: 15
 --- !u!58 &5983170067546357990
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -168,9 +168,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.031311452}
   serializedVersion: 2
-  m_Radius: 0.45
+  m_Radius: 0.4813115
 --- !u!114 &2792704050994904479
 MonoBehaviour:
   m_ObjectHideFlags: 0
