@@ -222,6 +222,9 @@ MonoBehaviour:
   _gameOverLayerMask:
     serializedVersion: 2
     m_Bits: 0
+  _testAgentPrefab: {fileID: 0}
+  _impulseMagnitude: 5
+  _isCarrierReplicatingOnCollision: 0
 --- !u!114 &3396513715939407450
 MonoBehaviour:
   m_ObjectHideFlags: 0

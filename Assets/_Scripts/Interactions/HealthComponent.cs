@@ -17,10 +17,12 @@ public class HealthComponent : MonoBehaviour
         {
             if (gameObject.CompareTag("Carrier"))
             {
+                Debug.Log("HIT CARRIER");
                 Broadcaster.TriggerOnShortAudioRequest(AudioClipType.CarrierHit);
             }
             else if (gameObject.CompareTag("Player"))
             {
+                Debug.Log("HIT PLAYER");
                 Broadcaster.TriggerOnShortAudioRequest(AudioClipType.PlayerHit);
             }
         }

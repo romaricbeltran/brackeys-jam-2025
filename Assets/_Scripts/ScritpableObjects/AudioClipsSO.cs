@@ -39,7 +39,7 @@ public class AudioClipHandler
     {
         if (_audioClips.Count > 0)
         {
-            List<AudioClip> tempList = _audioClips;
+            List<AudioClip> tempList = new List<AudioClip>(_audioClips);
 
             if (_audioClip != null)
             {
