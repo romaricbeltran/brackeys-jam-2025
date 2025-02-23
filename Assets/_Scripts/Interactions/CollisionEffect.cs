@@ -70,8 +70,10 @@ public class CollisionEffect : MonoBehaviour
             }
             else
             {
-                m_health.ChangeHealth(-1);
-
+                if (gameObject.CompareTag("Carrier"))
+                {
+                    m_health.ChangeHealth(-1);
+                }
             }
         }
 
