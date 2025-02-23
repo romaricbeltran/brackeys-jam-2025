@@ -296,7 +296,7 @@ MonoBehaviour:
     m_Bits: 1024
   _testAgentPrefab: {fileID: 3879761823762763794}
   _impulseMagnitude: 5
-  _isCarrierReplicatingOnCollision: 0
+  _isCarrierReplicatingOnCollision: 1
 --- !u!114 &7467530255815345625
 MonoBehaviour:
   m_ObjectHideFlags: 0
