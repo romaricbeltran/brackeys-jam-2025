@@ -287,13 +287,15 @@ MonoBehaviour:
   selfDestroyOnCollision: 0
   _instaDeathLayerMask:
     serializedVersion: 2
-    m_Bits: 4096
+    m_Bits: 0
   _damageLayerMask:
     serializedVersion: 2
     m_Bits: 512
   _gameOverLayerMask:
     serializedVersion: 2
     m_Bits: 1024
+  _testAgentPrefab: {fileID: 3879761823762763794}
+  _impulseMagnitude: 5
 --- !u!114 &7467530255815345625
 MonoBehaviour:
   m_ObjectHideFlags: 0
