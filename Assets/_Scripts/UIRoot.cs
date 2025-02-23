@@ -103,6 +103,7 @@ public class UIRoot : MonoBehaviour
     private void HandleGameOver(GameOverPayLoad gameOverPayLoad)
     {
         EnablePanel(UIPanelType.GameOverPanel);
+        Debug.Log($"[UIRoot] Is Victory {gameOverPayLoad.IsVictory}");
         _carrierDeadOverlay.gameObject.SetActive(!gameOverPayLoad.IsVictory);
     }
 
@@ -140,7 +141,7 @@ public class UIRoot : MonoBehaviour
             Time.timeScale = 1f;
         }
 
-        Broadcaster.TriggerOnAudioRequest(AudioClipType.ButtonClick);
+        Broadcaster.TriggerOnShortAudioRequest(AudioClipType.ButtonClick);
 
         _mainBackground.gameObject.SetActive(false);
         _mainPanel.gameObject.SetActive(false);

@@ -12,7 +12,7 @@ public class Projectile : MonoBehaviour
 
     private void Start()
     {
-        Broadcaster.TriggerOnAudioRequest(AudioClipType.Projectile);
+        Broadcaster.TriggerOnShortAudioRequest(AudioClipType.Projectile);
     }
 
     public void Init(Transform target)

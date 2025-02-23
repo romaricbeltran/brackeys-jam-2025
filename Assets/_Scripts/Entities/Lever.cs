@@ -18,7 +18,7 @@ public class Lever : MonoBehaviour
     {
         if(_doors.Count > 0)
         {
-            Broadcaster.TriggerOnAudioRequest(AudioClipType.ActivateLever);
+            Broadcaster.TriggerOnShortAudioRequest(AudioClipType.ActivateLever);
         }
 
         foreach(var door in _doors)

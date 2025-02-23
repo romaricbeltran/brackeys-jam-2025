@@ -96,7 +96,7 @@ public class TestController : MonoBehaviour
                 Debug.Log($"DASH!!!");
 
                 // Play sound
-                Broadcaster.TriggerOnAudioRequest(AudioClipType.Dash);
+                Broadcaster.TriggerOnShortAudioRequest(AudioClipType.Dash);
                 // Animate
                 m_trailRenderer.emitting = true;
             }

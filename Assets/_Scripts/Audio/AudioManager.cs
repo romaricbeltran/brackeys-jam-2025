@@ -8,27 +8,44 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource m_mainMusicSource;
     [SerializeField][MinMaxSlider(0.5f, 2.0f)] private Vector2 _pitchRandomRange;
 
+
+    private AudioClipType m_currentMainTheme;
+
     private void Start()
     {
-        if(_audioClipsSO.TryGetTargetAudioClipType(AudioClipType.MainTheme, out AudioClip mainThemeClip))
+       PlayAudio(AudioClipType.MainTheme);
+    }
+
+    private void OnEnable()
+    {
+        Broadcaster.OnShortAudioRequest -= PlayShortAudio;
+        Broadcaster.OnShortAudioRequest += PlayShortAudio;
+
+        Broadcaster.OnAudioRequest -= PlayAudio;
+        Broadcaster.OnAudioRequest += PlayAudio;
+    }
+
+    private void OnDisable()
+    {
+        Broadcaster.OnShortAudioRequest -= PlayShortAudio;
+        Broadcaster.OnAudioRequest -= PlayAudio;
+    }
+
+    private void PlayAudio(AudioClipType mainThemeType)
+    {
+        Debug.LogWarning("YOU REQUESTED THE SAME MAIN TYPE, WON'T BE PLAYED!!!");
+        
+        if(m_currentMainTheme == mainThemeType) return; // GUARD CASE
+
+        if(_audioClipsSO.TryGetTargetAudioClipType(mainThemeType, out AudioClip mainThemeClip))
         {
+            m_currentMainTheme = mainThemeType;
             m_mainMusicSource.clip = mainThemeClip;
             m_mainMusicSource.Play();
         }
     }
 
-    private void OnEnable()
-    {
-        Broadcaster.OnAudioRequest -= PlaySingleAudio;
-        Broadcaster.OnAudioRequest += PlaySingleAudio;
-    }
-
-    private void OnDisable()
-    {
-        Broadcaster.OnAudioRequest -= PlaySingleAudio;
-    }
-
-    private void PlaySingleAudio(AudioClipType targetAudioClipType)
+    private void PlayShortAudio(AudioClipType targetAudioClipType)
     {
         if (_audioClipsSO.TryGetTargetAudioClipType(targetAudioClipType, out AudioClip targetClip))
         {

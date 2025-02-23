@@ -37,7 +37,7 @@ public class CollisionEffect : MonoBehaviour
         {
             if(gameObject.CompareTag("Carrier"))
             {
-                Broadcaster.TriggerGameOver(new GameOverPayLoad());
+                Broadcaster.TriggerGameOver(new GameOverPayLoad(false));
             }
             Destroy(gameObject);
             return;
@@ -50,7 +50,7 @@ public class CollisionEffect : MonoBehaviour
 
         if(IsLayerInMask(collision.gameObject.layer, _gameOverLayerMask))
         {
-            Broadcaster.TriggerGameOver(new GameOverPayLoad());
+            Broadcaster.TriggerGameOver(new GameOverPayLoad(true));
         }
     }
 

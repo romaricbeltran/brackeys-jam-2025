@@ -63,8 +63,10 @@ public enum AudioClipType
     BringFlowerToCarrier,
     Dash,
     CarrierHit,
+    PlayerHit,
     CarrierDies,
     Projectile,
     ButtonClick,
-    GameOver
+    GameOver,
+    Victory
 }

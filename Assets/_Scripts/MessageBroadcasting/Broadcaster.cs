@@ -3,6 +3,7 @@ using UnityEngine;
 
 public static class Broadcaster
 {
+    public static event Action<AudioClipType> OnShortAudioRequest;
     public static event Action<AudioClipType> OnAudioRequest;
     public static event Action<Transform, AnimationType> OnPlayerAnimationRequest;
 
@@ -11,9 +12,14 @@ public static class Broadcaster
     public static event Action<bool> OnPauseRequest;
     public static event Action OnBackToMainPanel;
 
-    public static void TriggerOnAudioRequest(AudioClipType audioClipType)
+    public static void TriggerOnShortAudioRequest(AudioClipType audioClipType)
     {
-        OnAudioRequest?.Invoke(audioClipType);
+        OnShortAudioRequest?.Invoke(audioClipType);
+    }
+
+    public static void TriggerOnAudioRequest(AudioClipType mainThemeType)
+    {
+        OnAudioRequest?.Invoke(mainThemeType);
     }
 
     public static void TriggerOnAnimationRequest(Transform sender, AnimationType animationType)
@@ -24,6 +30,11 @@ public static class Broadcaster
     public static void TriggerGameOver(GameOverPayLoad gameOverPayLoad)
     {
         OnGameOver?.Invoke(gameOverPayLoad);
+
+        if (gameOverPayLoad.IsVictory)
+        {
+            TriggerOnAudioRequest(AudioClipType.Victory);
+        }
     }
 
     public static void TriggerOnPauseRequest(bool isActive)
@@ -39,6 +50,7 @@ public static class Broadcaster
     public static void TriggerOnBackToMainPanel()
     {
         OnBackToMainPanel?.Invoke();
+        TriggerOnAudioRequest(AudioClipType.MainTheme);
     }
 }
 

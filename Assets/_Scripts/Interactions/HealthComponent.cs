@@ -15,11 +15,11 @@ public class HealthComponent : MonoBehaviour
     {
         if(value < 0)
         {
-            Broadcaster.TriggerOnAudioRequest(AudioClipType.CarrierHit);
+            Broadcaster.TriggerOnShortAudioRequest(AudioClipType.CarrierHit);
         }
         else
         {
-            Broadcaster.TriggerOnAudioRequest(AudioClipType.BringFlowerToCarrier);
+            Broadcaster.TriggerOnShortAudioRequest(AudioClipType.BringFlowerToCarrier);
         }
 
         _health += value;
@@ -28,7 +28,7 @@ public class HealthComponent : MonoBehaviour
 
         if(_health <= 0)
         {
-            Broadcaster.TriggerOnAudioRequest(AudioClipType.CarrierDies);
+            Broadcaster.TriggerOnShortAudioRequest(AudioClipType.CarrierDies);
             gameObject.SetActive(false);
         }
     }
