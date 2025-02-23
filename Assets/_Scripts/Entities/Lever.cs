@@ -4,26 +4,29 @@ using UnityEngine;
 public class Lever : MonoBehaviour
 {
     [SerializeField] private List<Door> _doors = new List<Door>();
-    [SerializeField] private bool _areDoorsEnabled = true;
+    [SerializeField] private bool _areDoorsOpen = false;
 
-    private void Start()
+    private SpriteRenderer _leverSpriteRenderer;
+
+    private void Awake()
     {
-        foreach (var door in _doors)
-        {
-            door.gameObject.SetActive(_areDoorsEnabled);
-        }
+        _leverSpriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     public void ToggleDoors()
     {
-        if(_doors.Count > 0)
+        if (_doors.Count > 0)
         {
             Broadcaster.TriggerOnShortAudioRequest(AudioClipType.ActivateLever);
         }
-
-        foreach(var door in _doors)
+        
+        _areDoorsOpen = !_areDoorsOpen;
+        
+        _leverSpriteRenderer.flipX = _areDoorsOpen;
+        
+        foreach (var door in _doors)
         {
-            door.gameObject.SetActive(!door.gameObject.activeSelf);
+            door.GetComponent<Animator>().SetBool("isOpen", _areDoorsOpen);
         }
     }
 }

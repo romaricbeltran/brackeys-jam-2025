@@ -84,7 +84,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _doors: []
-  _areDoorsEnabled: 1
+  _areDoorsEnabled: 0
 --- !u!114 &2455901087424263193
 MonoBehaviour:
   m_ObjectHideFlags: 0
