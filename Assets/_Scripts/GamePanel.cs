@@ -17,6 +17,9 @@ public class GamePanel : MonoBehaviour
         HealthComponent.OnHealthChanged += UpdateHealthView;
 
         var tempoGO = GameObject.FindGameObjectWithTag("Carrier");
+        
+        if(tempoGO == null) return; // GUARD CASE
+
         var carrierHealthComponent = tempoGO.GetComponent<HealthComponent>();
         UpdateHealthView(carrierHealthComponent);
     }
