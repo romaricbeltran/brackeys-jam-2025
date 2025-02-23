@@ -13,7 +13,8 @@ public class UIRoot : MonoBehaviour
     [SerializeField] RectTransform _gamePanel;
     [SerializeField] RectTransform _pausePanel;
     [SerializeField] RectTransform _gameOverPanel;
-    [SerializeField] RectTransform _carrierDeadOverlay;
+    [SerializeField] RectTransform _winText;
+    [SerializeField] RectTransform _loseText;
 
     [Space]
     [Space]
@@ -104,7 +105,8 @@ public class UIRoot : MonoBehaviour
     {
         EnablePanel(UIPanelType.GameOverPanel);
         Debug.Log($"[UIRoot] Is Victory {gameOverPayLoad.IsVictory}");
-        _carrierDeadOverlay.gameObject.SetActive(!gameOverPayLoad.IsVictory);
+        _loseText.gameObject.SetActive(!gameOverPayLoad.IsVictory);
+        _winText.gameObject.SetActive(gameOverPayLoad.IsVictory);
     }
 
     private void HandleOptionButtonRequest()
