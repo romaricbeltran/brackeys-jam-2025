@@ -305,6 +305,74 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1189700122596843874, guid: 9c49b78c87f6dd04b9056e0d05f91627, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1189700122596843874, guid: 9c49b78c87f6dd04b9056e0d05f91627, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1189700122596843874, guid: 9c49b78c87f6dd04b9056e0d05f91627, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 1189700122596843874, guid: 9c49b78c87f6dd04b9056e0d05f91627, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 550
+      objectReference: {fileID: 0}
+    - target: {fileID: 1189700122596843874, guid: 9c49b78c87f6dd04b9056e0d05f91627, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1189700122596843874, guid: 9c49b78c87f6dd04b9056e0d05f91627, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2593116112811148148, guid: 9c49b78c87f6dd04b9056e0d05f91627, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2593116112811148148, guid: 9c49b78c87f6dd04b9056e0d05f91627, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2593116112811148148, guid: 9c49b78c87f6dd04b9056e0d05f91627, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2593116112811148148, guid: 9c49b78c87f6dd04b9056e0d05f91627, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6984129027435509142, guid: 9c49b78c87f6dd04b9056e0d05f91627, type: 3}
+      propertyPath: m_text
+      value: 'Umay, the celestial mother goddess, descends from her divine realm
+        to breathe life into newborns. During this sacred ritual, she offers her
+        fragile heart to the statue, a gift of pure creation.
+
+        
+
+        But
+        in the shadows lurk the minions of the underworld god, dark beings who seek
+        to shatter the heart and bring ruin to the innocent.
+
+        
+
+        You
+        are a devoted follower of Umay, blessed with divine speed and invulnerability.
+        Protect the heart at all costs : intercept projectiles, open doors, and feed
+        the heart to keep it alive.
+
+        
+
+        The fate of the newborns
+        lies in your hands.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6984129027435509142, guid: 9c49b78c87f6dd04b9056e0d05f91627, type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7550500457649553306, guid: 9c49b78c87f6dd04b9056e0d05f91627, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -388,6 +456,22 @@ PrefabInstance:
     - target: {fileID: 7963459263289132704, guid: 9c49b78c87f6dd04b9056e0d05f91627, type: 3}
       propertyPath: m_Name
       value: UIRoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 8148093918159835722, guid: 9c49b78c87f6dd04b9056e0d05f91627, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8148093918159835722, guid: 9c49b78c87f6dd04b9056e0d05f91627, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8148093918159835722, guid: 9c49b78c87f6dd04b9056e0d05f91627, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8148093918159835722, guid: 9c49b78c87f6dd04b9056e0d05f91627, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
