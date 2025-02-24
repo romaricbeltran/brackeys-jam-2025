@@ -39,10 +39,7 @@ public static class Broadcaster
 
         TriggerOnStopAudioRequest();
 
-        if (gameOverPayLoad.IsVictory)
-        {
-            TriggerOnAudioRequest(AudioClipType.Victory);
-        }
+        TriggerOnShortAudioRequest(gameOverPayLoad.IsVictory ? AudioClipType.Victory : AudioClipType.GameOver);
     }
 
     public static void TriggerOnPauseRequest(bool isActive)
